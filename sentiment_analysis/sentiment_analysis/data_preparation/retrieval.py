@@ -47,4 +47,7 @@ def generate_dataset(data: List[Dict[str, List[str]]]) -> pd.DataFrame:
     }
     # convert to dataframe:
     data_df = pd.DataFrame(data_dict)
+    data_df = data_df.reset_index()
+    data_df = data_df.rename(columns={"index": "id"})
+    data_df["id"] = data_df.index
     return data_df

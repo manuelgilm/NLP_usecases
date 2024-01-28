@@ -6,17 +6,22 @@ repos:
         entry: black
         language: system
         types: [ python ]
-      - id: isort
-        name: isort
-        entry: isort
-        language: system
-        types: [ python ]
         args: [
-            '--line-length=110',
-            '--trailing-comma',
-            '--ensure-newline-before-comments',
-            '--force-single-line-imports',
-        ]
+            '--line-length=79',
+            '--verbose'
+          ]
+      # - id: isort
+      #   name: isort
+      #   entry: isort
+      #   language: system
+      #   types: [ python ]
+      #   args: [
+      #       '--line-length=150',
+      #       '--trailing-comma',
+      #       '--ensure-newline-before-comments',
+      #       '--force-single-line-imports',
+      #       '--verbose'
+      #   ]
       - id: flake8
         name: flake8
         entry: flake8
