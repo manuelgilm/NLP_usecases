@@ -5,12 +5,12 @@ from sklearn.model_selection import train_test_split
 
 from sentiment_analysis.configs.utils import get_config
 from sentiment_analysis.configs.utils import get_root_path
-from sentiment_analysis.data_preparation.retrieval import (
-    generate_dataset,
-)  # noqa
-from sentiment_analysis.data_preparation.retrieval import (
-    process_sentiment_file,
-)  # noqa
+
+# fmt: off
+from sentiment_analysis.data_preparation.retrieval import generate_dataset  # noqa
+from sentiment_analysis.data_preparation.retrieval import process_sentiment_file  # noqa
+
+# fmt: on
 
 
 def generate_dataset_from_raw_data():
