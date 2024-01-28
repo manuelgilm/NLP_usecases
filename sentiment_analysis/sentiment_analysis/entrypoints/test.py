@@ -7,9 +7,9 @@ from sentiment_analysis.configs.utils import get_root_path
 from sentiment_analysis.configs.utils import read_txt
 
 # fmt: off
-from sentiment_analysis.data_preparation.retrieval import generate_dataset # noqa
-from sentiment_analysis.data_preparation.retrieval import process_sentiment_file # noqa
-from sentiment_analysis.training.training_pipelines import get_transformer_pipeline # noqa
+from sentiment_analysis.data_preparation.retrieval import generate_dataset  # noqa
+from sentiment_analysis.data_preparation.retrieval import process_sentiment_file  # noqa
+from sentiment_analysis.training.training_pipelines import get_transformer_pipeline  # noqa
 
 # fmt: on
 
@@ -72,10 +72,10 @@ def transform_data():
     # transform labels to int
     df_train["label"] = df_train["label"].map(
         lambda x: 1 if x == "positive" else 0
-    )  # noqa
+    )
     df_test["label"] = df_test["label"].map(
         lambda x: 1 if x == "positive" else 0
-    )  # noqa
+    )
 
     text_columns = ["sentence"]
 
