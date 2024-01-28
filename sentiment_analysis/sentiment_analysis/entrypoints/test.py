@@ -7,6 +7,9 @@ from sentiment_analysis.data_preparation.retrieval import process_sentiment_file
 
 
 def test_get_config():
+    """
+    Test get_config function.
+    """
     config = get_config("config.yaml")
     path = config["DATA_FOLDER"]
     filenames = config["FILES"]
@@ -16,7 +19,9 @@ def test_get_config():
 
 
 def process_raw_data():
-    # # Example usage:
+    """
+    Process raw data.
+    """
     config = get_config("config.yaml")
     path = config["DATA_FOLDER"]
     filenames = config["FILES"]
