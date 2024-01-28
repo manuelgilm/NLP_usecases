@@ -1,0 +1,8 @@
+DATA_FOLDER: C:/Users/manue/Documents/kaggle_datasets/sentiment_labelled_sentences
+FILES:
+  AMAZON: amazon_cells_labelled.txt
+  YELP: yelp_labelled.txt
+  IMDB: imdb_labelled.txt
+
+RESOURCES:
+  RAW_DATASET: "sentiment_analysis/resources/raw_dataset.csv"

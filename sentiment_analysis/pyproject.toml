@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "sentiment-analysis"
+version = "0.1.0"
+description = ""
+authors = ["Manuel Gil <manuelgilsitio@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pyyaml = "^6.0.1"
+pandas = "^2.2.0"
+
+[tool.poetry.scripts]
+test = 'sentiment_analysis.entrypoints.test:test_get_config'
+process_raw_data = 'sentiment_analysis.entrypoints.test:process_raw_data'
+generate_dataset = 'sentiment_analysis.entrypoints.generate_dataset:generate_dataset_from_raw_data'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
