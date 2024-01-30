@@ -2,13 +2,12 @@ from pathlib import Path
 
 import pandas as pd
 
-from sentiment_analysis.configs.utils import get_config
-from sentiment_analysis.configs.utils import get_root_path
-from sentiment_analysis.configs.utils import read_txt
-
 # fmt: off
 from sentiment_analysis.data_preparation.retrieval import generate_dataset  # noqa
 from sentiment_analysis.data_preparation.retrieval import process_sentiment_file  # noqa
+from sentiment_analysis.sentiment_analysis.utils.utils import get_config
+from sentiment_analysis.sentiment_analysis.utils.utils import get_root_path
+from sentiment_analysis.sentiment_analysis.utils.utils import read_txt
 from sentiment_analysis.training.training_pipelines import get_transformer_pipeline  # noqa
 
 # fmt: on

@@ -1,7 +1,12 @@
+from pathlib import Path
 from typing import Dict
 from typing import List
+from typing import Tuple
 
 import pandas as pd
+
+from sentiment_analysis.sentiment_analysis.utils.utils import get_config
+from sentiment_analysis.sentiment_analysis.utils.utils import get_root_path
 
 
 def process_sentiment_file(file_path: str) -> Dict[str, List[str]]:
@@ -51,3 +56,24 @@ def generate_dataset(data: List[Dict[str, List[str]]]) -> pd.DataFrame:
     data_df = data_df.rename(columns={"index": "id"})
     data_df["id"] = data_df.index
     return data_df
+
+
+def get_train_and_test_data() -> Tuple[pd.DataFrame, pd.DataFrame]:
+    """
+    Generate train and test data.
+
+    :return: train and test data.
+    """
+    config = get_config("config.yaml")
+    train_index_path = config["RESOURCES"]["TRAIN_INDEX"]
+    test_index_path = config["RESOURCES"]["TEST_INDEX"]
+    data_path = config["RESOURCES"]["RAW_DATASET"]
+    # Reading data
+    df = pd.read_csv(Path(get_root_path()) / data_path)
+    train_index = pd.read_csv(Path(get_root_path()) / train_index_path)
+    test_index = pd.read_csv(Path(get_root_path()) / test_index_path)
+    # Merging data
+    df_train = train_index.merge(df, on="id")
+    df_test = test_index.merge(df, on="id")
+
+    return df_train, df_test

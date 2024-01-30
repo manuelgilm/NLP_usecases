@@ -9,3 +9,11 @@ RESOURCES:
   TRAIN_INDEX: "sentiment_analysis/resources/train_index.csv"
   TEST_INDEX: "sentiment_analysis/resources/test_index.csv"
   VAL_INDEX: "sentiment_analysis/resources/val_index.csv"
+
+MLFLOW:
+  EXPERIMENT_NAME: "sentiment_analysis"
+
+HYPERPARAMETERS:
+  RANDOMFOREST:
+    key: randomforest
+    n_estimators: 100

@@ -3,12 +3,11 @@ from pathlib import Path
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from sentiment_analysis.configs.utils import get_config
-from sentiment_analysis.configs.utils import get_root_path
-
 # fmt: off
 from sentiment_analysis.data_preparation.retrieval import generate_dataset  # noqa
 from sentiment_analysis.data_preparation.retrieval import process_sentiment_file  # noqa
+from sentiment_analysis.sentiment_analysis.utils.utils import get_config
+from sentiment_analysis.sentiment_analysis.utils.utils import get_root_path
 
 # fmt: on
 
