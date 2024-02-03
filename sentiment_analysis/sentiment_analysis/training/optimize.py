@@ -1,8 +1,12 @@
+from typing import Any
 from typing import Dict
 from typing import Optional
 
 import mlflow
 import pandas as pd
+
+# fmt: on
+from hyperopt import hp
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import f1_score
 from sklearn.metrics import precision_score
@@ -10,8 +14,6 @@ from sklearn.metrics import recall_score
 
 # fmt: off
 from sentiment_analysis.training.training_pipelines import get_transformer_pipeline  # noqa
-
-# fmt: on
 
 
 def objective_function(
@@ -21,6 +23,7 @@ def objective_function(
     x_val: pd.DataFrame,
     y_val: pd.DataFrame,
     experiment_id: str,
+    model_prefix: str,
 ) -> float:
     """
     Objective function to optimize.
@@ -33,14 +36,9 @@ def objective_function(
     :param experiment_id: mlflow experiment id.
     :return: score to minimize.
     """
-
     # get model:
-    model = get_transformer_pipeline(text_columns=["sentence"])
-    # cast params to int:
-    params["classifier__max_depth"] = int(params["classifier__max_depth"])
-    params["classifier__n_estimators"] = int(
-        params["classifier__n_estimators"]
-    )
+    model = get_transformer_pipeline(model_prefix=model_prefix,
+                                     text_columns=["sentence"])
     # set model params:
     model.set_params(**params)
 
@@ -50,6 +48,39 @@ def objective_function(
         metrics = log_classification_metrics(y_pred, y_val, run.info.run_id)
 
     return -metrics["f1"]
+
+
+def get_search_space(prefix: str, params: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Get search space for hyperopt.
+
+    :param prefix: prefix for the model.
+    :param params: hyperparameters to optimize.
+    :return: search space.
+    """
+    search_space = {}
+    for param, options in params.items():
+        param_label = prefix + "__" + param
+
+        if options["type"] == "int":
+            search_space[param_label] = hp.uniformint(
+                param_label,
+                int(options["min"]),
+                int(options["max"])
+            )
+        elif options["type"] == "float":
+            search_space[param_label] = hp.uniform(
+                param_label,
+                float(options["min"]),
+                float(options["max"])
+            )
+        elif options["type"] == "str":
+            search_space[param_label] = hp.choice(
+                param_label,
+                options["options"]
+            )
+
+    return search_space
 
 
 def log_classification_metrics(
@@ -66,13 +97,13 @@ def log_classification_metrics(
     if not run_id:
         run_id = mlflow.active_run().info.run_id
         if not run_id:
-            raise Exception("No mlflow Run was found!")
-    with mlflow.start_run(run_id=run_id):
-        metrics = {
-            "accuracy": accuracy_score(y_true, y_pred),
-            "f1": f1_score(y_true, y_pred),
-            "precision": precision_score(y_true, y_pred),
-            "recall": recall_score(y_true, y_pred),
-        }
-        mlflow.log_metrics(metrics)
-        return metrics
+            raise Exception("No Active MLflow Run was found!")
+
+    metrics = {
+        "accuracy": accuracy_score(y_true, y_pred),
+        "f1": f1_score(y_true, y_pred),
+        "precision": precision_score(y_true, y_pred),
+        "recall": recall_score(y_true, y_pred),
+    }
+    mlflow.log_metrics(metrics)
+    return metrics

@@ -5,8 +5,8 @@ from typing import Tuple
 
 import pandas as pd
 
-from sentiment_analysis.sentiment_analysis.utils.utils import get_config
-from sentiment_analysis.sentiment_analysis.utils.utils import get_root_path
+from sentiment_analysis.utils.utils import get_config
+from sentiment_analysis.utils.utils import get_root_path
 
 
 def process_sentiment_file(file_path: str) -> Dict[str, List[str]]:
@@ -75,5 +75,13 @@ def get_train_and_test_data() -> Tuple[pd.DataFrame, pd.DataFrame]:
     # Merging data
     df_train = train_index.merge(df, on="id")
     df_test = test_index.merge(df, on="id")
+    # Transforming labels to int
+
+    df_train["label"] = df_train["label"].map(
+        lambda x: 1 if x == "positive" else 0
+    )
+    df_test["label"] = df_test["label"].map(
+        lambda x: 1 if x == "positive" else 0
+    )
 
     return df_train, df_test

@@ -20,7 +20,7 @@ def get_config(path: str) -> dict:
     :param path: path to yaml file
     :return: config
     """
-    data = pkgutil.get_data(__name__, path)
+    data = pkgutil.get_data(get_root_path().name, "configs/" + path)
     config = yaml.safe_load(data)
     return config
 

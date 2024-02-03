@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.pipeline import Pipeline
 
 
-def get_transformer_pipeline(text_columns: List[str]):
+def get_transformer_pipeline(model_prefix: str, text_columns: List[str]):
     """
     This function returns a sklearn pipeline with a ColumnTransformer.
 
@@ -23,7 +23,7 @@ def get_transformer_pipeline(text_columns: List[str]):
     pipeline = Pipeline(
         steps=[
             ("text_processor", text_transformer),
-            ("classifier", RandomForestClassifier()),
+            (model_prefix, RandomForestClassifier()),
         ]
     )
     return pipeline
