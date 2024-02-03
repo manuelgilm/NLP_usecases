@@ -20,12 +20,12 @@ HYPERPARAMETERS:
       max: 100
       type: int
       step: 10
-    criterion:
-      options:
-        - gini
-        - entropy
-        - log_loss
-      type: str
+    # criterion:
+    #   options:
+    #     - gini
+    #     - entropy
+    #     - log_loss
+    #   type: str
     max_depth:
       min: 1
       max: 10

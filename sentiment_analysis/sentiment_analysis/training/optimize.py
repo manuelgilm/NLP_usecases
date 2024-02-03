@@ -16,6 +16,24 @@ from sklearn.metrics import recall_score
 from sentiment_analysis.training.training_pipelines import get_transformer_pipeline  # noqa
 
 
+def cast_params(params: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Cast hyperparameters to the right type.
+
+    :param params: hyperparameters to cast.
+    :return: casted hyperparameters.
+    """
+    for param, value in params.items():
+        if isinstance(value, float):
+            params[param] = int(value)
+        elif isinstance(value, int):
+            params[param] = int(value)
+        elif isinstance(value, str):
+            params[param] = str(value)
+
+    return params
+
+
 def objective_function(
     params: Dict[str, float],
     x_train: pd.DataFrame,
@@ -39,6 +57,7 @@ def objective_function(
     # get model:
     model = get_transformer_pipeline(model_prefix=model_prefix,
                                      text_columns=["sentence"])
+    params = cast_params(params)
     # set model params:
     model.set_params(**params)
 
