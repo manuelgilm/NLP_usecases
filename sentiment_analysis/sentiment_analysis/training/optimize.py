@@ -64,9 +64,13 @@ def objective_function(
     with mlflow.start_run(experiment_id=experiment_id, nested=True) as run:
         model.fit(x_train, y_train)
         y_pred = model.predict(x_val)
-        metrics = log_classification_metrics(y_pred, y_val, run.info.run_id)
+        metrics = log_classification_metrics(
+            y_pred,
+            y_val,
+            "val",
+            run.info.run_id)
 
-    return -metrics["f1"]
+    return -metrics["val_f1"]
 
 
 def get_search_space(prefix: str, params: Dict[str, Any]) -> Dict[str, Any]:
@@ -103,7 +107,10 @@ def get_search_space(prefix: str, params: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def log_classification_metrics(
-    y_pred: pd.DataFrame, y_true: pd.DataFrame, run_id: Optional[str] = None
+    y_pred: pd.DataFrame,
+    y_true: pd.DataFrame,
+    prefix: str,
+    run_id: Optional[str] = None
 ) -> Dict[str, float]:
     """
     Get classification metrics and log them to mlflow.
@@ -119,10 +126,10 @@ def log_classification_metrics(
             raise Exception("No Active MLflow Run was found!")
 
     metrics = {
-        "accuracy": accuracy_score(y_true, y_pred),
-        "f1": f1_score(y_true, y_pred),
-        "precision": precision_score(y_true, y_pred),
-        "recall": recall_score(y_true, y_pred),
+        prefix + "_accuracy": accuracy_score(y_true, y_pred),
+        prefix + "_f1": f1_score(y_true, y_pred),
+        prefix + "_precision": precision_score(y_true, y_pred),
+        prefix + "_recall": recall_score(y_true, y_pred),
     }
     mlflow.log_metrics(metrics)
     return metrics

@@ -71,7 +71,7 @@ def train():
         pipeline.fit(train_df.drop(["label"], axis=1), train_df["label"])
         predictions = pipeline.predict(test_df.drop(["label"], axis=1))
         _ = log_classification_metrics(
-            predictions, test_df["label"], run.info.run_id
+            predictions, test_df["label"], "test", run.info.run_id
         )
         mlflow.sklearn.log_model(pipeline, "model")
 
