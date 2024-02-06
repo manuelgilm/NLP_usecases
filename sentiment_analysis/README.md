@@ -21,11 +21,6 @@
 - [🏁 Getting Started ](#-getting-started-)
   - [Prerequisites](#prerequisites)
   - [Installing](#installing)
-- [🔧 Running the tests ](#-running-the-tests-)
-  - [Break down into end to end tests](#break-down-into-end-to-end-tests)
-  - [And coding style tests](#and-coding-style-tests)
-- [🎈 Usage ](#-usage-)
-- [🚀 Deployment ](#-deployment-)
 - [⛏️ Built Using ](#️-built-using-)
 - [✍️ Authors ](#️-authors-)
 - [🎉 Acknowledgements ](#-acknowledgements-)
@@ -58,6 +53,10 @@ steps:
 3. Run the code
 
 ```bash
+cd NLP_usecases/sentiment_analysis
+```
+
+```bash
 git clone <repo-url>
 ```
 
@@ -70,33 +69,11 @@ poetry run <entrypoint>
 
 ```
 
-## 🔧 Running the tests <a name = "tests"></a>
+For example, to train the model, you can run the following command:
 
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+```bash
+poetry run python train
 ```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## 🎈 Usage <a name="usage"></a>
-
-Add notes about how to use the system.
-
-## 🚀 Deployment <a name = "deployment"></a>
-
-Add additional notes about how to deploy this on a live system.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 DATASET_URL: 
@@ -107,6 +84,7 @@ DATASET_URL:
 - [Numpy](https://numpy.org/) - Scientific Computing
 - [Scikit-learn](https://scikit-learn.org/stable/) - Machine Learning Library
 - [Poetry](https://python-poetry.org/) - Dependency Management
+- [MLFLOW](https://mlflow.org/) - Model Tracking and Experiment Management
 ## ✍️ Authors <a name = "authors"></a>
 
 - [@ManuelGil]() - Idea & Initial work
