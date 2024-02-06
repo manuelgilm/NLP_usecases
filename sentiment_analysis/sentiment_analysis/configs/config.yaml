@@ -10,6 +10,7 @@ RESOURCES:
   TEST_INDEX: "sentiment_analysis/resources/test_index.csv"
   VAL_INDEX: "sentiment_analysis/resources/val_index.csv"
 
+RUN_ID: "95621e65bd89471ea6cf0f169aabdc47"
 MLFLOW:
   EXPERIMENT_NAME: "sentiment_analysis"
 

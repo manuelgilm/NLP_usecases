@@ -21,6 +21,8 @@ generate_indexes = 'sentiment_analysis.entrypoints.generate_dataset:generate_tra
 test2 = 'sentiment_analysis.entrypoints.test:test_read_dataset'
 data_pipeline = 'sentiment_analysis.entrypoints.test:transform_data'
 train = 'sentiment_analysis.entrypoints.train:train'
+inference = 'sentiment_analysis.entrypoints.inference:inference'
+predict_label = 'sentiment_analysis.entrypoints.inference:classify_text'
 
 [build-system]
 requires = ["poetry-core"]
