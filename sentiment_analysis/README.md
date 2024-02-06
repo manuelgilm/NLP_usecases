@@ -10,7 +10,7 @@
 ---
 
 <p align="center"> 
-    Sentiment Analysis is the process of determining the sentiment of a given text. It is a form of text analysis that involves classifying texts into a pre-defined sentiment. The sentiment can be positive, negative.
+    Sentiment Analysis is the process of determining the sentiment of a given text. It is a form of text analysis that involves classifying texts into a pre-defined sentiment. The sentiment can be positive, or negative.
     <br> 
 </p>
 
@@ -26,7 +26,7 @@
 
 ## About <a name = "about"></a>
 
-Sentiment Analysis is the process of determining the sentiment of a given text. It is a form of text analysis that involves classifying texts into a pre-defined sentiment. The sentiment can be positive, negative.
+Sentiment Analysis is the process of determining the sentiment of a given text. It is a form of text analysis that involves classifying texts into a pre-defined sentiment. The sentiment can be positive, or negative.
 
 The goal of this project is to build a sentiment analysis model that can be used to classify the sentiment of a given text. The model will be trained on a dataset of text data that has been labeled with a sentiment. The model will then be used to classify the sentiment of new text data.
 
