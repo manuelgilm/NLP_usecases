@@ -22,7 +22,7 @@
   - [Prerequisites](#prerequisites)
   - [Installing](#installing)
 - [Built Using ](#built-using-)
-- [✍️ Authors ](#️-authors-)
+- [Authors ](#authors-)
 
 ## About <a name = "about"></a>
 
@@ -84,6 +84,6 @@ poetry run python train
 - [Scikit-learn](https://scikit-learn.org/stable/) - Machine Learning Library
 - [Poetry](https://python-poetry.org/) - Dependency Management
 - [MLFLOW](https://mlflow.org/) - Model Tracking and Experiment Management
-## ✍️ Authors <a name = "authors"></a>
+## Authors <a name = "authors"></a>
 
-- [@ManuelGil]() - Idea & Initial work
+- [@ManuelGil](www.linkedin.com/in/manuelgilmatheus) - Idea & Initial work
