@@ -3,10 +3,24 @@
  <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
 </p>
 
+
 <h3 align="center">Sentiment Analysis</h3>
+<style>
+    .icon-container {
+        display: flex; /* Use flexbox for horizontal arrangement */
+        justify-content: center; /* Center the icons horizontally */
+        align-items: center; /* Center the icons vertically */
+    }
+    .icon {
+        width: 50px; /* Adjust the width of the icons */
+        height: 50px; /* Adjust the height of the icons */
+        margin: 0 10px; /* Adjust the margin between icons */
+    }
+</style>
 
-<div align="center">
 
+<!-- <div align="center"> -->
+<div class="icon-container">
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 <!-- [![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls) -->
