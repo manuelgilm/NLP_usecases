@@ -18,10 +18,10 @@
 
 - [Table of Contents](#table-of-contents)
 - [About ](#about-)
-- [🏁 Getting Started ](#-getting-started-)
+- [Getting Started ](#getting-started-)
   - [Prerequisites](#prerequisites)
   - [Installing](#installing)
-- [⛏️ Built Using ](#️-built-using-)
+- [Built Using ](#built-using-)
 - [✍️ Authors ](#️-authors-)
 
 ## About <a name = "about"></a>
@@ -34,7 +34,7 @@ The project is meant to be a learning experience. I will be using this project t
 
 An article about the project can be found [here](https://medium.com/python-in-plain-english/movie-review-text-classification-using-scikit-learn-d72cd375a7d7).
 
-## 🏁 Getting Started <a name = "getting_started"></a>
+## Getting Started <a name = "getting_started"></a>
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
 
@@ -76,7 +76,7 @@ For example, to train the model, you can run the following command:
 poetry run python train
 ```
 
-## ⛏️ Built Using <a name = "built_using"></a>
+## Built Using <a name = "built_using"></a>
 - [Dataset](https://archive.ics.uci.edu/dataset/331/sentiment+labelled+sentences) - Labelled Data
 - [Python](https://www.python.org/) - Programming Language
 - [Pandas](https://pandas.pydata.org/) - Data Manipulation and Analysis
