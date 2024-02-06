@@ -32,7 +32,7 @@ The goal of this project is to build a sentiment analysis model that can be used
 
 The project is meant to be a learning experience. I will be using this project to learn about the different techniques and algorithms that are used in sentiment analysis and the best MLops practices. I will also be using this project to learn about the different tools and libraries that are used in sentiment analysis.
 
-An article about the project can be found [Movie Review Text Classification Using scikit-learn](https://medium.com/python-in-plain-english/movie-review-text-classification-using-scikit-learn-d72cd375a7d7).
+An article about the project can be found [here](https://medium.com/python-in-plain-english/movie-review-text-classification-using-scikit-learn-d72cd375a7d7).
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
