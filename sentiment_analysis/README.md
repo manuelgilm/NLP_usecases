@@ -14,19 +14,23 @@
     <br> 
 </p>
 
-## 📝 Table of Contents
+## Table of Contents
 
-- [About](#about)
-- [Getting Started](#getting_started)
-- [Deployment](#deployment)
-- [Usage](#usage)
-- [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
+- [Table of Contents](#table-of-contents)
+- [About ](#about-)
+- [🏁 Getting Started ](#-getting-started-)
+  - [Prerequisites](#prerequisites)
+  - [Installing](#installing)
+- [🔧 Running the tests ](#-running-the-tests-)
+  - [Break down into end to end tests](#break-down-into-end-to-end-tests)
+  - [And coding style tests](#and-coding-style-tests)
+- [🎈 Usage ](#-usage-)
+- [🚀 Deployment ](#-deployment-)
+- [⛏️ Built Using ](#️-built-using-)
+- [✍️ Authors ](#️-authors-)
+- [🎉 Acknowledgements ](#-acknowledgements-)
 
-## 🧐 About <a name = "about"></a>
+## About <a name = "about"></a>
 
 Sentiment Analysis is the process of determining the sentiment of a given text. It is a form of text analysis that involves classifying texts into a pre-defined sentiment. The sentiment can be positive, negative.
 
@@ -40,29 +44,31 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
+* Poetry - Dependency Management
+* Python - Programming Language
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
+To run this code on your local machine, you will need to have Python and Poetry installed. You can install Python from the official website and Poetry from the official website.
 
-Say what the step will be
+steps: 
 
-```
-Give the example
-```
+1. Clone the repository
+2. Install the dependencies
+3. Run the code
 
-And repeat
-
-```
-until finished
+```bash
+git clone <repo-url>
 ```
 
-End with an example of getting some data out of the system or using it for a little demo.
+```bash
+poetry install
+```
+
+```bash
+poetry run <entrypoint>
+
+```
 
 ## 🔧 Running the tests <a name = "tests"></a>
 
