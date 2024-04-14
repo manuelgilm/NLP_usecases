@@ -19,7 +19,6 @@
             <td>Spacy</td>
             <td>MLflow, Poetry, Spacy, NLP, MLOps</td>
             <td><a href="https://github.com/manuelgilm/NLP_usecases/tree/develop/sentiment_classifier">URL</a></td>
-            
         </tr>
     </table>
 </body>
