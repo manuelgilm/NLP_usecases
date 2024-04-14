@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NLP USECASES</title>
+    <h1>NLP USECASES</h1>
 </head>
 <body>
-    <h1>Proejcts</h1>
+    <h1>Projects</h1>
     <table>
         <tr>
             <th>Project Name</th>
