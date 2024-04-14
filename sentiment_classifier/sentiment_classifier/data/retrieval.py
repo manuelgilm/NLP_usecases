@@ -1,11 +1,14 @@
-import pandas as pd
-from sentiment_classifier.utils.utils import get_root_dir
-from typing import Union 
 from pathlib import Path
 from typing import Tuple
+from typing import Union
+
+import pandas as pd
 from sklearn.model_selection import train_test_split
 
-def read_csv(path:Union[Path, str], **kwargs)->pd.DataFrame:
+from sentiment_classifier.utils.utils import get_root_dir
+
+
+def read_csv(path: Union[Path, str], **kwargs) -> pd.DataFrame:
     """
     Read a csv file from a given path and return a pandas dataframe.
 
@@ -20,15 +23,16 @@ def read_csv(path:Union[Path, str], **kwargs)->pd.DataFrame:
 
     if path.suffix != ".csv":
         raise ValueError("File must be a csv file.")
-    
+
     if isinstance(path, str):
         path = Path(path)
 
     return pd.read_csv(path, **kwargs)
 
 
-
-def get_train_test_data(df:pd.DataFrame, test_size:float=0.2, random_state:int=42)->Tuple[pd.DataFrame, pd.DataFrame]:
+def get_train_test_data(
+    df: pd.DataFrame, test_size: float = 0.2, random_state: int = 42
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Get train and test data from a given dataframe.
 
@@ -37,9 +41,14 @@ def get_train_test_data(df:pd.DataFrame, test_size:float=0.2, random_state:int=4
     :param random_state: Random state for train_test_split.
     :return: Tuple of train and test dataframes.
     """
-    X_train, X_test, y_train, y_test = train_test_split(df["text"], df["sentiment"], test_size=test_size, random_state=random_state)
+    X_train, X_test, y_train, y_test = train_test_split(
+        df["text"],
+        df["sentiment"],
+        test_size=test_size,
+        random_state=random_state,
+    )
 
-    train_df = pd.DataFrame({"text":X_train, "sentiment":y_train})
-    test_df = pd.DataFrame({"text":X_test, "sentiment":y_test})
+    train_df = pd.DataFrame({"text": X_train, "sentiment": y_train})
+    test_df = pd.DataFrame({"text": X_test, "sentiment": y_test})
 
     return train_df, test_df

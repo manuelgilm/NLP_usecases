@@ -1,17 +1,19 @@
 import mlflow
-from sentiment_classifier.utils.utils import get_root_dir
-from sentiment_classifier.data.training_dataset import get_train_test_data
+
 from sentiment_classifier.data.retrieval import read_csv
-import mlflow 
+from sentiment_classifier.data.training_dataset import get_train_test_data
+from sentiment_classifier.utils.utils import get_root_dir
+
 
 def predict():
     """
     Predict on the test data.
     """
-    root = get_root_dir() 
-    data_path = root / "data" /"all-data.csv" 
-    df = read_csv(data_path, encoding='latin-1', header=None, names = ["sentiment", "text"])
-
+    root = get_root_dir()
+    data_path = root / "data" / "all-data.csv"
+    df = read_csv(
+        data_path, encoding="latin-1", header=None, names=["sentiment", "text"]
+    )
 
     _, test = get_train_test_data(df)
     runs = mlflow.search_runs(experiment_names=["spacy_classifier"])
