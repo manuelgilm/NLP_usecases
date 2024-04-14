@@ -1,67 +1,47 @@
-import spacy 
-from spacy.tokens import DocBin
-from datetime import datetime
-from pathlib import Path
-from typing import List
-from typing import Tuple 
+from sentiment_classifier.utils.utils import get_root_dir
+from sentiment_classifier.model.mlflow_utils import get_or_create_experiment
+from sentiment_classifier.utils.utils import load_spacy_model
+from spacy.cli.train import train
 from typing import Union 
+from typing import Optional
+import mlflow 
+from mlflow.models.signature import infer_signature
+from pathlib import Path
 
-def get_spacy_pipeline(model:str)->spacy.lang.en.English: # review the return type
+
+def train_spacy_model(config_path:Optional[str]=None, training_data_path:Optional[str]=None, testing_data_path:Optional[str]=None, output_path:Optional[str]=None)->None:
     """
-    This function takes in a model name and returns a spacy pipeline.
+    Train a spacy model.
 
-    :param model: Name of the spacy model.
-    :return: Spacy pipeline.
-    """
-    nlp = spacy.load(model)
-    return nlp
-
-
-def create_spacy_documents(nlp:spacy.language, data:List[Tuple[str, str]])->List[spacy.Doc]:
-    """
-    This function takes in a list of tuples and returns a list of spacy documents.
-    """
-    text = []
-    for doc, label in nlp.pipe(data, as_tuples = True):
-        if (label=='positive'):
-            doc.cats['positive'] = 1
-            doc.cats['negative'] = 0
-            doc.cats['neutral']  = 0
-        elif (label=='negative'):
-            doc.cats['positive'] = 0
-            doc.cats['negative'] = 1
-            doc.cats['neutral']  = 0
-        else:
-            doc.cats['positive'] = 0
-            doc.cats['negative'] = 0
-            doc.cats['neutral']  = 1
-
-        text.append(doc)
-    return(text)
-
-def create_spacy_dataset(data:List[Tuple[str, str]], path:Union[Path, str])->None:
-    """
-    Create a spacy dataset from a given data.
-
-    :param data: List of tuples.
-    :param path: Path to save the dataset.
+    :param model_path: Path to the spacy model.
+    :param training_data_path: Path to the training data.
+    :param output_path: Path to save the model.
+    :param n_iter: Number of iterations.
     :return: None
     """
+    root_dir = get_root_dir()
+    if config_path is None:
+        config_path = root_dir / "sentiment_classifier" / "configs" / "training"/ "config.cfg"
+        config_path = str(config_path)
+    if training_data_path is None:
+        training_data_path = root_dir / "data" / "train.spacy"
+        training_data_path = str(training_data_path)
+    if testing_data_path is None:
+        testing_data_path = root_dir / "data" / "test.spacy"
+        testing_data_path = str(testing_data_path)
+    if output_path is None:
+        output_path = root_dir / "models" 
+        output_path = str(output_path)
 
-    if isinstance(path, str):
-        path = Path(path)
-    print("Creating spacy documents...")
-    docs = create_spacy_documents(data)
-    print("Spacy documents created.")
+    train(config_path=config_path, overrides={"paths.train":training_data_path, "paths.dev":testing_data_path}, output_path=output_path)
 
-    print("Creating spacy binary dataset...")
-    doc_bin = DocBin(docs = docs)
-    print("Spacy binary dataset created.")
+    spacy_model = load_spacy_model(model_path= Path(output_path) / "model-best")
 
-    folder = path.parent
-    if not folder.exists():
-        folder.mkdir(parents=True)
-        
-    doc_bin.to_disk(path)
+    example = "the company has no plans to move all production to Russia, although that is where the company is growing"
+    doc = spacy_model(example)
+    model_signature = infer_signature(model_input = example , model_output = doc.cats)
 
+    experiment = get_or_create_experiment("spacy_classifier", {"project_name":"sentiment_classifier", "framework":"spacy"})
 
+    with mlflow.start_run(run_name="log_spacy_model", experiment_id=experiment.experiment_id) as run:
+        mlflow.spacy.log_model(spacy_model = spacy_model, artifact_path = "best_model", signature = model_signature)

@@ -3,6 +3,7 @@ from sentiment_classifier.data.retrieval import read_csv
 from sentiment_classifier.utils.utils import get_root_dir
 
 import pandas as pd 
+from mlflow.models import infer_signature
 import spacy 
 from spacy.tokens import DocBin
 from datetime import datetime
