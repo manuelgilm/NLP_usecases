@@ -1,0 +1,19 @@
+mlflow:
+  experiment:
+    name: spacy_classifier
+    tags:
+      project_name: sentiment_classifier
+      framework: spacy
+  run:
+    name: log_spacy_model
+    artifact_path: best_model
+    registered_model_name: sentiment_classifier
+    tags:
+      model: ""
+      type: ""
+
+trainer:
+  train_config: sentiment_classifier/configs/training/config.cfg
+  training_data_path: data/train.spacy
+  testing_data_path: data/test.spacy
+  output_path: models
