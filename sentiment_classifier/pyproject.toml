@@ -19,6 +19,7 @@ mlflow = "^2.11.3"
 create_binary_dataset = "sentiment_classifier.data.training_dataset:create_training_and_testing_dataset"
 train = "sentiment_classifier.model.trainer:train_spacy_model"
 predict = "sentiment_classifier.model.scoring:predict"
+score = "sentiment_classifier.model.deployment:online_inference"
 
 [build-system]
 requires = ["poetry-core"]
