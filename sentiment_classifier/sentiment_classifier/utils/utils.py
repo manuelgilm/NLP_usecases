@@ -1,6 +1,10 @@
+import pkgutil
 from pathlib import Path
+from typing import Any
+from typing import Dict
 
 import spacy
+import yaml
 
 
 def get_root_dir() -> Path:
@@ -10,6 +14,17 @@ def get_root_dir() -> Path:
     :return: Root directory of the project.
     """
     return Path(__file__).parent.parent.parent
+
+
+def read_config(name: str) -> Dict[str, Any]:
+    """
+    Read the configuration file.
+
+    :param name: The name of the configuration file.
+    """
+    data = pkgutil.get_data("sentiment_classifier", f"configs/{name}.yaml")
+    config = yaml.safe_load(data)
+    return config
 
 
 def load_spacy_model(model_path: str):
