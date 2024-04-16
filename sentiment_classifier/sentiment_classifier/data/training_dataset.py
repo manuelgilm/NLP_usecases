@@ -1,4 +1,3 @@
-from datetime import datetime
 from pathlib import Path
 from typing import List
 from typing import Tuple
@@ -6,7 +5,6 @@ from typing import Union
 
 import pandas as pd
 import spacy
-from mlflow.models import infer_signature
 from spacy.tokens import DocBin
 
 from sentiment_classifier.data.retrieval import get_train_test_data
@@ -42,7 +40,8 @@ def create_spacy_documents(
     nlp: spacy.language, data: List[Tuple[str, str]]
 ) -> List[spacy.tokens.Doc]:
     """
-    This function takes in a list of tuples and returns a list of spacy documents.
+    This function takes in a list of tuples and returns a list of
+    spacy documents.
     """
     text = []
     for doc, label in nlp.pipe(data, as_tuples=True):

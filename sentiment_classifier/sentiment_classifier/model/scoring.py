@@ -21,7 +21,6 @@ def predict():
     registered_model_name = configs["mlflow"]["run"]["registered_model_name"]
     model_uri = f"models:/{registered_model_name}@Champion"
     loaded_model = mlflow.pyfunc.load_model(model_uri)
-
     # Predict on a pandas DataFrame.
     predictions = loaded_model.predict(test)
     print(predictions)

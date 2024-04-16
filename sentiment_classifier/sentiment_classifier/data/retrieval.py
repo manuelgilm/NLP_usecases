@@ -5,8 +5,6 @@ from typing import Union
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from sentiment_classifier.utils.utils import get_root_dir
-
 
 def read_csv(path: Union[Path, str], **kwargs) -> pd.DataFrame:
     """

@@ -21,6 +21,7 @@ def read_config(name: str) -> Dict[str, Any]:
     Read the configuration file.
 
     :param name: The name of the configuration file.
+    :return: Configuration file.
     """
     data = pkgutil.get_data("sentiment_classifier", f"configs/{name}.yaml")
     config = yaml.safe_load(data)
