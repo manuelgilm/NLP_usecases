@@ -1,2 +1,5 @@
 poetry run spacy init fill-config base_config.cfg config.cfg
 python -m spacy train config.cfg --output ./output --paths.train ./train.spacy --paths.dev ./dev.spacy
+
+# mlflow 
+poetry run mlflow models serve -m models:/sentiment_classifier@Champion -p 5000 --no-conda

@@ -10,6 +10,7 @@ from spacy.tokens import DocBin
 from sentiment_classifier.data.retrieval import get_train_test_data
 from sentiment_classifier.data.retrieval import read_csv
 from sentiment_classifier.utils.utils import get_root_dir
+from sentiment_classifier.utils.utils import read_config
 
 
 def get_spacy_pipeline(model: str):  # review the return type
@@ -94,9 +95,9 @@ def create_training_and_testing_dataset():
     """
     Create training and testing dataset for the sentiment analysis model.
     """
-
+    configs = read_config("data_config")
     root = get_root_dir()
-    data_path = root / "data" / "all-data.csv"
+    data_path = root / configs["source_data"]
     df = read_csv(
         data_path, encoding="latin-1", header=None, names=["sentiment", "text"]
     )
@@ -109,8 +110,8 @@ def create_training_and_testing_dataset():
     model_name = "en_core_web_trf"
     nlp = get_spacy_pipeline(model=model_name)
     # save the data
-    train_path = root / "data" / "train.spacy"
-    test_path = root / "data" / "test.spacy"
+    train_path = root / configs["binary_train_data"]
+    test_path = root / configs["binary_test_data"]
 
     create_spacy_dataset(nlp, train_data, train_path)
     create_spacy_dataset(nlp, test_data, test_path)
