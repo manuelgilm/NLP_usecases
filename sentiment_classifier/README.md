@@ -1,5 +1,7 @@
 # Sentiment Classifier
 
+![Image]("notebooks/Screenshot_16-4-2024_21210_.jpeg")
+
 This project is a learning exercise that focuses on using MLflow and spaCy for Natural Language Processing (NLP) projects. The goal is to develop a sentiment classifier using these tools. MLflow is a platform for managing the machine learning lifecycle, while spaCy is a popular NLP library in Python. By combining these technologies, we aim to build an effective sentiment classifier that can analyze and classify the sentiment of text data.
 
 ## Project Setup
