@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "financial-news-sentiment"
+version = "0.1.0"
+description = ""
+authors = ["Manuel Gil <manuelgilsitio@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+transformers = {extras = ["torch"], version = "^4.40.0"}
+pandas = "^2.2.2"
+scikit-learn = "^1.4.2"
+
+[tool.poetry.scripts]
+read_data = 'financial_news_sentiment.data.retrieval:read_data'
+predict = 'financial_news_sentiment.model.predict:predict'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
