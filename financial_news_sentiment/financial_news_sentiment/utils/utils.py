@@ -1,7 +1,11 @@
 import pkgutil
+import time
+from datetime import datetime
+from datetime import timezone
 from pathlib import Path
 from typing import Any
 from typing import Dict
+from typing import Union
 
 import yaml
 
@@ -29,3 +33,39 @@ def read_config(name: str) -> Dict[str, Any]:
 
     config = yaml.safe_load(data)
     return config
+
+
+def add_encoding(path: Union[str, Path]) -> str:
+    """
+    Add encoding to path.
+
+    :param path: Path.
+    :return: Path with encoding.
+    """
+    if isinstance(path, str):
+        path = Path(path)
+
+    name_without_suffix = "".join(path.name.split(".")[:-1])
+    new_suffix = str(time.time()).split(".")[0]
+    new_name = f"{name_without_suffix}_{new_suffix}{path.suffix}"
+    return path.parent / new_name
+
+
+def decode_path(path: Union[str, Path]) -> str:
+    """
+    Decode path.
+
+    :param path: Path.
+    :return: Decoded path.
+    """
+
+    if isinstance(path, str):
+        path = Path(path)
+
+    name = path.name.split(".")[0]
+    timestamp = name.split("_")[-1]
+    date_ = datetime.fromtimestamp(float(timestamp), timezone.utc).strftime(
+        "%Y-%m-%d %H:%M:%S"
+    )
+
+    return date_
