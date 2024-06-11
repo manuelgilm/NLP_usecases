@@ -2,6 +2,8 @@ from typing import List
 
 import numpy as np
 import pandas as pd
+from transformers import AutoModelForSequenceClassification
+from transformers import AutoTokenizer
 from transformers import pipeline
 
 from financial_news_sentiment.data.retrieval import get_train_test_data
@@ -21,7 +23,26 @@ def get_prediction(texts: List[str], labels: List[str] = None):
     sentiment_analysis = pipeline(
         "zero-shot-classification", model="facebook/bart-large-mnli"
     )
+
     return sentiment_analysis(texts, candidate_labels=labels)
+
+
+def get_prediction_using_tokenizer(texts: List[str]):
+    """
+    Get sentiment analysis predictions for a list of texts using tokenizer.
+
+    :param texts: List of texts.
+    :return: List of sentiment analysis predictions.
+    """
+    checkpoint = "distilbert-base-uncased-finetuned-sst-2-english"
+    tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+    model = AutoModelForSequenceClassification.from_pretrained(checkpoint)
+    tokens = tokenizer(
+        texts, padding=True, truncation=True, return_tensors="pt"
+    )
+    output = model(**tokens)
+    predictions = output.logits.argmax(dim=1)
+    return predictions
 
 
 def predict():
@@ -31,6 +52,8 @@ def predict():
     :param text: Text.
     :return: Sentiment analysis prediction.
     """
+    import time
+
     root = get_root_path()
 
     df = read_data()
@@ -38,7 +61,16 @@ def predict():
     train_df, _ = get_train_test_data(df)
     texts = train_df["text"].iloc[0:10].tolist()
     print(train_df)
+    start = time.time()
+    predictions = get_prediction_using_tokenizer(texts)
+    end = time.time()
+    print(f"Time taken: {end - start}")
+
+    start = time.time()
     predictions = get_prediction(texts, labels)
+    end = time.time()
+    print(f"Time taken: {end - start}")
+
     result = {
         "text": texts,
         "sentiment": train_df["sentiment"].iloc[0:10].tolist(),
