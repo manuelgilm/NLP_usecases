@@ -5,8 +5,10 @@ from datetime import timezone
 from pathlib import Path
 from typing import Any
 from typing import Dict
+from typing import List
 from typing import Union
 
+import pandas as pd
 import yaml
 
 
@@ -69,3 +71,19 @@ def decode_path(path: Union[str, Path]) -> str:
     )
 
     return date_
+
+
+def as_dataframe(data: List[Dict[str, Any]]) -> pd.DataFrame:
+    """
+    Convert a list of dictionaries to a pandas DataFrame.
+
+    :param data: List of dictionaries.
+    :return: DataFrame.
+    """
+    keys = data[0].keys()
+    data_ = {key: [] for key in keys}
+    for d in data:
+        for key in keys:
+            data_[key].append(d[key])
+
+    return pd.DataFrame(data_)

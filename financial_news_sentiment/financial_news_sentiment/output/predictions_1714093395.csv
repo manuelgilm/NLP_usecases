@@ -1,0 +1,5 @@
+text,sentiment,prediction,score
+"In Russia , Raisio 's Food Division 's home market stretches all the way to Vladivostok .",neutral,POSITIVE,0.9798679351806641
+"Operators only need to learn how to use one device for multiple levels of applications , including voice-directed operations .",neutral,NEGATIVE,0.9861560463905334
+The company expects its net sales in the first half of 2008 to reach the previous year 's level .,positive,NEGATIVE,0.9990335702896118
+The bridge will be 1.2 km long and is located between Anasmotet by the road E20 and the new traffic junction in Marieholm by the road E45 .,neutral,POSITIVE,0.9337195158004761

@@ -8,7 +8,9 @@ from transformers import pipeline
 
 from financial_news_sentiment.data.retrieval import get_train_test_data
 from financial_news_sentiment.data.retrieval import read_data
+from financial_news_sentiment.model.pipelines import ShotClassifier
 from financial_news_sentiment.utils.utils import add_encoding
+from financial_news_sentiment.utils.utils import as_dataframe
 from financial_news_sentiment.utils.utils import get_root_path
 
 
@@ -43,6 +45,25 @@ def get_prediction_using_tokenizer(texts: List[str]):
     output = model(**tokens)
     predictions = output.logits.argmax(dim=1)
     return predictions
+
+
+def predict2():
+    """
+    Get sentiment analysis prediction for a single text.
+
+    :param text: Text.
+    :return: Sentiment analysis prediction.
+    """
+
+    df = read_data()
+    train_df, _ = get_train_test_data(df)
+    texts = train_df["text"].iloc[0:10].tolist()
+
+    classifier = ShotClassifier()
+    predictions = classifier.predict(texts)
+    print(predictions)
+    predictions_df = as_dataframe(predictions)
+    print(predictions_df.head())
 
 
 def predict():
