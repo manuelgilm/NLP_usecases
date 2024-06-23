@@ -1,0 +1,6 @@
+model:
+  task: "text-classification"
+  checkpoint: "facebook/bart-large-mnli"
+labels:
+  - positive
+  - negative
