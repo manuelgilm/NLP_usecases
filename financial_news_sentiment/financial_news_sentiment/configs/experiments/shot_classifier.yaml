@@ -1,0 +1,10 @@
+experiment_name: shot_classifier
+experiment_tags:
+  project_name: financial_news_sentiment_analysis
+  task: classification
+  dataset: financial_news
+  model_task: zero-shot-classification
+  model_checkpoint: facebook/bart-large-mnli
+run_name: shot_classifier
+run_tags:
+dataset_path: financial_news_sentiment/output/shot_classifier_test_dataset_predictions_1719172884.csv

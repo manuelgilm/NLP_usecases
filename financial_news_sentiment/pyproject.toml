@@ -18,7 +18,7 @@ torchvision = "^0.18.1"
 [tool.poetry.scripts]
 read_data = 'financial_news_sentiment.data.retrieval:read_data'
 predict = 'financial_news_sentiment.model.predict:predict2'
-
+shot_classifier_experiment = 'financial_news_sentiment.model.predict:log_experiments'
 
 [build-system]
 requires = ["poetry-core"]
