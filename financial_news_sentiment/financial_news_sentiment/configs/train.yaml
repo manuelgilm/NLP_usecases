@@ -1,0 +1,7 @@
+model: "facebook/bart-large-mnli"
+labels:
+  - positive
+  - negative
+
+output_dir: "outputs/fine_tuned_model"
+evaluation_strategy: "epoch"
