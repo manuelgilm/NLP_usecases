@@ -6,22 +6,23 @@ authors = ["Manuel Gil <manuelgilsitio@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.9"
 transformers = {extras = ["torch"], version = "^4.40.0"}
 pandas = "^2.2.2"
 scikit-learn = "^1.4.2"
-ipython = "^8.23.0"
-jupyter = "^1.0.0"
 mlflow = "^2.12.1"
 torchvision = "^0.18.1"
 datasets = "^2.20.0"
 evaluate = "^0.4.2"
+torch = "^2.3.1"
+python-dotenv = "^1.0.1"
 
 [tool.poetry.scripts]
 read_data = 'financial_news_sentiment.data.retrieval:read_data'
 predict = 'financial_news_sentiment.model.predict:predict3'
 shot_classifier_experiment = 'financial_news_sentiment.model.predict:log_experiments'
 trainer = 'financial_news_sentiment.model.train:get_trainer'
+create_job = 'financial_news_sentiment.dbx.entrypoints:create_and_run_job'
 
 [build-system]
 requires = ["poetry-core"]

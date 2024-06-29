@@ -1,0 +1,6 @@
+- task_key: "fine-tuning"
+  python_wheel_task:
+    package_name: financial_news_sentiment
+    entry_point: trainer
+  libraries:
+    - whl: dbfs:/FileStore/wheels/financial_news_sentiment-0.1.0-py3-none-any.whl
